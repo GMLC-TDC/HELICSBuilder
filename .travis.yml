@@ -1,8 +1,8 @@
 language: julia
 os:
-  - linux
+- linux
 julia:
-  - 1.0
+- 1.0
 notifications:
   email: false
 git:
@@ -10,20 +10,23 @@ git:
 cache:
   timeout: 1000
   directories:
-    - downloads
+  - downloads
 env:
   global:
-    - BINARYBUILDER_DOWNLOADS_CACHE=downloads
-    - BINARYBUILDER_AUTOMATIC_APPLE=true
+  - BINARYBUILDER_DOWNLOADS_CACHE=downloads
+  - BINARYBUILDER_AUTOMATIC_APPLE=true
 sudo: required
-
-# Before anything else, get the latest versions of things
 before_script:
-  - julia -e 'using Pkg;
-    Pkg.add(PackageSpec(name="MbedTLS", version="0.6.6"));
-    Pkg.pin(PackageSpec(name="MbedTLS", version="0.6.6"));
-    pkg"add BinaryProvider"; pkg"add BinaryBuilder"; Pkg.build()'
-
+- julia -e 'using Pkg; Pkg.add(PackageSpec(name="MbedTLS", version="0.6.6")); Pkg.pin(PackageSpec(name="MbedTLS",
+  version="0.6.6")); pkg"add BinaryProvider"; pkg"add BinaryBuilder"; Pkg.build()'
 script:
-  - julia build_tarballs.jl
-
+- julia build_tarballs.jl
+deploy:
+  provider: releases
+  api_key:
+    secure: 4VL0VBEUh1UWc62h/2ya8Yd759jK0OfowuYgl73k4c+T0j9Jj7BxtbwhDLm6Q+Q5dRxQtRPwf0J2tD8TTMVxtuaE/xZ+cLrC6uQO5lnB8T/8Ew5nj0zqGHIp4COiqmJiHgPWQm4nyna+tXcoJHNRZ9aXF6MbqHFG9lpqNjHCq7+oXEtAyTtkwxkI7d+QNLASrKzjr2ChKfcg3GN8TOyEpJ7osxXsXMM8v5W26PD4FWsTkufqp/IM1sT5K1XRcpeUxa4zTLrPZLKy8sMwHnS6lPwJBZtD1tU94Ah1doZJRcO0FF+hDHwV8wvDDNzCXxzBBH5GciVI1wCOw3+ecE8KrfFCSuCmaJv5kEtCRd2cT3l5TPb15QVJW2lQJxlEC5ycHLoVOpoKCpl88xHazUQLII6+z3muT2GwvAGvL39e+hjumRznCDFGURKLX6avVsxz0AOJ7AH13GP+cDY1JpTIgIjkRC73auQ59noYPHT3PQUtK5IEK4+yo1K7Gljd8Dgki6iAGcYIHtptrY0vDQNEcmPAS2JdRLykfvtve3XuXwCv6QA/ANhYHUDPz7bxknTuD4zCG3imngkNxxSP4RMLmvsrQsgyyjlXudOl1tlIJMVMgoMnH6A1HzD0M2JJrGtPckgP2QcS+O08zYFupo7nveh5LlAlBWvE0TEWJsYrzNA=
+  file_glob: true
+  file: products/*
+  skip_cleanup: true
+  on:
+    repo: GMLC-TDC/HELICSBuilder
