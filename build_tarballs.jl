@@ -1,7 +1,7 @@
 using BinaryBuilder
 
 sources = [
-    "https://github.com/gmlc-tdc/helics/archive/v2.0.0-rc1.tar.gz" => "47524ea2558961a6b924a1f972b2d063ca43daa092d91b3b8865ae06f5b33961",
+    "https://github.com/gmlc-tdc/helics/archive/v2.0.0.tar.gz" => "73e24a09d59ae201e750ac287ab5ceb52c275e4ba6077d47274a9fafc612f2b5",
     "https://dl.bintray.com/boostorg/release/1.68.0/source/boost_1_68_0.tar.bz2" =>
     "7f6130bc3cf65f56a618888ce9d5ea704fa10b462be126ad053e80e553d6d8b7",
 ]
@@ -31,7 +31,7 @@ dependencies = []
 build_tarballs(
     ARGS,
     "libhelicsSharedLib",
-    v"2.0.0-rc1",
+    v"2.0.0",
     sources,
     script,
     platforms,
