@@ -2,7 +2,7 @@ language: julia
 os:
 - linux
 julia:
-- 1.0
+- 1
 notifications:
   email: false
 git:
@@ -17,8 +17,7 @@ env:
   - BINARYBUILDER_AUTOMATIC_APPLE=true
 sudo: required
 before_script:
-- julia -e 'using Pkg; Pkg.add(PackageSpec(name="MbedTLS", version="0.6.6")); Pkg.pin(PackageSpec(name="MbedTLS",
-  version="0.6.6")); pkg"add BinaryProvider"; pkg"add BinaryBuilder"; Pkg.build()'
+- julia -e 'using Pkg; pkg"add BinaryProvider"; pkg"add BinaryBuilder"; Pkg.build()'
 script:
 - julia build_tarballs.jl
 deploy:
