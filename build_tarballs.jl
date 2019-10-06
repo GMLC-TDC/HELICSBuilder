@@ -6,13 +6,15 @@ sources = [
 
 script = raw"""
 cd $WORKSPACE/srcdir
-mkdir build
-cd build
-
 # On windows platforms, our ./configure and make invocations differ a bit
 if [[ ${target} == *-w64-mingw* ]]; then
+    # change file include
+    sed -i 's/WS2/ws2/g' ThirdParty/netif/gmlc/netif/NetIF.hpp
     EXTRA_CMAKE_FLAGS=""
 fi
+
+mkdir build
+cd build
 
 cat /opt/$target/$target.toolchain
 
