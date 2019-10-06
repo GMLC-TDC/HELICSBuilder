@@ -9,6 +9,7 @@ cd $WORKSPACE/srcdir
 # On windows platforms, our ./configure and make invocations differ a bit
 if [[ ${target} == *-w64-mingw* ]]; then
     # change file include
+    sed -i 's/Iphlpapi/iphlpapi/g' CMakeLists.txt
     sed -i 's/WS2/ws2/g' ThirdParty/netif/gmlc/netif/NetIF.hpp
     EXTRA_CMAKE_FLAGS=""
 fi
