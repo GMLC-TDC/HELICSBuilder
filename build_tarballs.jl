@@ -18,10 +18,6 @@ fi
 mkdir build
 cd build
 
-cat /opt/$target/$target.toolchain
-
-cat ${CMAKE_TARGET_TOOLCHAIN}
-
 cmake -DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_TOOLCHAIN_FILE=/opt/$target/$target.toolchain -DCMAKE_BUILD_TYPE=Release -DBUILD_HELICS_BOOST_TESTS=OFF -DBUILD_HELICS_TESTS=OFF ..
 make -j${nproc}
 make install
