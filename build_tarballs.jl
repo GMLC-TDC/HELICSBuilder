@@ -15,7 +15,6 @@ make install
 
 products(prefix) = [
     LibraryProduct(prefix, "libhelicsSharedLib", :libhelicsSharedLib),
-    LibraryProduct(prefix, "libzmq", :libzmq),
 ]
 
 platforms = supported_platforms()
