@@ -7,28 +7,24 @@ notifications:
   email: false
 git:
   depth: 99999999
-cache:
-  timeout: 1000
-  directories:
-  - downloads
 env:
   global:
   - BINARYBUILDER_DOWNLOADS_CACHE=downloads
   - BINARYBUILDER_AUTOMATIC_APPLE=true
   matrix:
-    - TARGET=x86_64-linux-gnu
-    - TARGET=i686-linux-gnu
-    - TARGET=x86_64-linux-musl
-    - TARGET=i686-linux-musl
-    - TARGET=aarch64-linux-gnu
-    - TARGET=aarch64-linux-musl
-    - TARGET=arm-linux-gnueabihf
-    - TARGET=arm-linux-musleabihf
-    - TARGET=powerpc64le-linux-gnu
-    - TARGET=x86_64-apple-darwin14
+    - TARGET=x86_64-w64-mingw32
+    - TARGET=i686-w64-mingw32
+      # - TARGET=x86_64-linux-gnu
+      # - TARGET=i686-linux-gnu
+      # - TARGET=x86_64-linux-musl
+      # - TARGET=i686-linux-musl
+      # - TARGET=aarch64-linux-gnu
+      # - TARGET=aarch64-linux-musl
+      # - TARGET=arm-linux-gnueabihf
+      # - TARGET=arm-linux-musleabihf
+      # - TARGET=powerpc64le-linux-gnu
+      # - TARGET=x86_64-apple-darwin14
       # - TARGET=x86_64-unknown-freebsd11.1
-      # - TARGET=x86_64-w64-mingw32
-      # - TARGET=i686-w64-mingw32
 
 sudo: required
 jobs:
@@ -39,7 +35,7 @@ jobs:
 before_script:
 - julia -e 'using Pkg; pkg"add BinaryProvider"; pkg"add https://github.com/kdheepak/BinaryBuilder.jl"; Pkg.build()'
 script:
-- julia --color=yes build_tarballs.jl $TARGET
+- julia --color=yes build_tarballs.jl $TARGET --verbose
 deploy:
   provider: releases
   api_key:

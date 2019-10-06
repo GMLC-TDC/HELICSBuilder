@@ -8,7 +8,17 @@ script = raw"""
 cd $WORKSPACE/srcdir
 mkdir build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_TOOLCHAIN_FILE=/opt/$target/$target.toolchain -DBUILD_HELICS_TESTS=OFF ..
+
+# On windows platforms, our ./configure and make invocations differ a bit
+if [[ ${target} == *-w64-mingw* ]]; then
+    EXTRA_CMAKE_FLAGS=""
+fi
+
+cat /opt/$target/$target.toolchain
+
+cat ${CMAKE_TARGET_TOOLCHAIN}
+
+cmake -DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_TOOLCHAIN_FILE=/opt/$target/$target.toolchain -DCMAKE_BUILD_TYPE=Release -DBUILD_HELICS_BOOST_TESTS=OFF -DBUILD_HELICS_TESTS=OFF ..
 make -j${nproc}
 make install
 """
