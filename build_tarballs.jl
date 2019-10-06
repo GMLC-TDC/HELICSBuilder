@@ -24,7 +24,7 @@ platforms = [
 
 dependencies = [
                 "https://github.com/benlorenz/boostBuilder/releases/download/v1.71.0/build_boost.v1.71.0.jl",
-                "https://github.com/JuliaInterop/ZMQBuilder/releases/download/v4.2.5%2B5/build.jl",
+                "https://github.com/JuliaInterop/ZMQBuilder/releases/download/v4.2.5%2B6/build.jl",
 ]
 
 # Build 'em!
