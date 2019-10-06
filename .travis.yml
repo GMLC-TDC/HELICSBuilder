@@ -31,7 +31,7 @@ env:
       #- TARGET=i686-w64-mingw32
 sudo: required
 before_script:
-- julia -e 'using Pkg; pkg"add BinaryProvider"; pkg"add BinaryBuilder"; Pkg.build()'
+- julia -e 'using Pkg; pkg"add BinaryProvider"; pkg"add https://github.com/kdheepak/BinaryBuilder.jl"; Pkg.build()'
 script:
 - julia --color=yes build_tarballs.jl $TARGET
 deploy:

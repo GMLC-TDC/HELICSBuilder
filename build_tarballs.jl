@@ -34,7 +34,6 @@ platforms = [
 ]
 
 dependencies = [
-                "https://github.com/staticfloat/GCCBuilder/releases/download/v8.1.0-0/build_GCC.v8.1.0.jl",
                 "https://github.com/benlorenz/boostBuilder/releases/download/v1.71.0/build_boost.v1.71.0.jl",
                 "https://github.com/JuliaInterop/ZMQBuilder/releases/download/v4.2.5%2B6/build.jl",
 ]
