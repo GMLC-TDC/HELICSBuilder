@@ -12,18 +12,30 @@ env:
   - BINARYBUILDER_DOWNLOADS_CACHE=downloads
   - BINARYBUILDER_AUTOMATIC_APPLE=true
   matrix:
-    - PART=1/12
-    - PART=2/12
-    - PART=3/12
-    - PART=4/12
-    - PART=5/12
-    - PART=6/12
-    - PART=7/12
-    - PART=8/12
-    - PART=9/12
-    - PART=10/12
-    - PART=11/12
-    - PART=12/12
+    - PART=1/24
+    - PART=2/24
+    - PART=3/24
+    - PART=4/24
+    - PART=5/24
+    - PART=6/24
+    - PART=7/24
+    - PART=8/24
+    - PART=9/24
+    - PART=10/24
+    - PART=11/24
+    - PART=12/24
+    - PART=13/24
+    - PART=14/24
+    - PART=15/24
+    - PART=16/24
+    - PART=17/24
+    - PART=18/24
+    - PART=19/24
+    - PART=20/24
+    - PART=21/24
+    - PART=22/24
+    - PART=23/24
+    - PART=24/24
 sudo: required
 jobs:
   include:
