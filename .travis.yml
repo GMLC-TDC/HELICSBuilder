@@ -12,20 +12,18 @@ env:
   - BINARYBUILDER_DOWNLOADS_CACHE=downloads
   - BINARYBUILDER_AUTOMATIC_APPLE=true
   matrix:
-    - TARGET=x86_64-w64-mingw32
-      # - TARGET=i686-w64-mingw32
-    - TARGET=x86_64-linux-gnu
-    - TARGET=i686-linux-gnu
-    - TARGET=x86_64-linux-musl
-    - TARGET=i686-linux-musl
-    - TARGET=aarch64-linux-gnu
-    - TARGET=aarch64-linux-musl
-    - TARGET=arm-linux-gnueabihf
-    - TARGET=arm-linux-musleabihf
-    - TARGET=powerpc64le-linux-gnu
-    - TARGET=x86_64-apple-darwin14
-      # - TARGET=x86_64-unknown-freebsd11.1
-
+    - PART=1/12
+    - PART=2/12
+    - PART=3/12
+    - PART=4/12
+    - PART=5/12
+    - PART=6/12
+    - PART=7/12
+    - PART=8/12
+    - PART=9/12
+    - PART=10/12
+    - PART=11/12
+    - PART=12/12
 sudo: required
 jobs:
   include:
@@ -33,9 +31,9 @@ jobs:
       script: julia --color=yes build_tarballs.jl --only-buildjl
       if: tag IS present
 before_script:
-- julia -e 'using Pkg; pkg"add BinaryProvider"; pkg"add https://github.com/kdheepak/BinaryBuilder.jl"; Pkg.build()'
+- julia -e 'using Pkg; pkg"add BinaryProvider"; pkg"add BinaryBuilder"; Pkg.build()'
 script:
-- julia --color=yes build_tarballs.jl $TARGET --verbose
+- julia --color=yes build_tarballs.jl --part=$PART --verbose
 deploy:
   provider: releases
   api_key:
