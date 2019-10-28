@@ -1,7 +1,7 @@
 using BinaryBuilder
 
 sources = [
-    "https://github.com/GMLC-TDC/HELICS/releases/download/v2.2.1/Helics-v2.2.1-source.tar.gz" => "bd78405337aa416aedb1ba9582d4ea3c6e8a9da4918217ff35faaa2f4a63a239",
+    "https://github.com/GMLC-TDC/HELICS/releases/download/v2.2.2/Helics-v2.2.2-source.tar.gz" => "d9731af425f33e68041ad4377c2eb15210bb18db28be5b9dcb4adfea24a94d5e",
 ]
 
 script = raw"""
@@ -78,7 +78,7 @@ dependencies = [
 build_tarballs(
     ARGS,
     "libhelicsSharedLib",
-    v"2.2.1",
+    v"2.2.2",
     sources,
     script,
     platforms,
