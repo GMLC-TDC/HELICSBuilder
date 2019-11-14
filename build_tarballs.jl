@@ -12,7 +12,7 @@ cd $WORKSPACE/srcdir
 mkdir build
 cd build
 
-cmake -DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_TOOLCHAIN_FILE=/opt/$target/$target.toolchain -DCMAKE_BUILD_TYPE=Release -DHELICS_BUILD_TESTS=OFF -DHELICS_DISABLE_BOOST=OFF ..
+cmake -DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_TOOLCHAIN_FILE=/opt/$target/$target.toolchain -DCMAKE_BUILD_TYPE=Release -DHELICS_BUILD_TESTS=OFF -DHELICS_DISABLE_BOOST=ON ..
 make -j${nproc}
 make install
 """
