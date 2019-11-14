@@ -1,19 +1,13 @@
 using BinaryBuilder
 
+HELICS_VERSION = v"2.3.0"
+
 sources = [
-    "https://github.com/GMLC-TDC/HELICS/releases/download/v2.2.2/Helics-v2.2.2-source.tar.gz" => "d9731af425f33e68041ad4377c2eb15210bb18db28be5b9dcb4adfea24a94d5e",
+           "https://github.com/GMLC-TDC/HELICS/releases/download/v$HELICS_VERSION/Helics-v$HELICS_VERSION-source.tar.gz" => "33dc5ac0c3d3d434bd11de97595d5861c8557c52a0a61291031b29a232d3bb62",
 ]
 
 script = raw"""
 cd $WORKSPACE/srcdir
-# On windows platforms, our ./configure and make invocations differ a bit
-if [[ ${target} == *-w64-mingw* ]]; then
-    # change file include
-    sed -i 's/Iphlpapi/iphlpapi/g' CMakeLists.txt
-    sed -i 's/ws2_32)/ws2_32 iphlpapi)/g' CMakeLists.txt
-    sed -i 's/WS2/ws2/g' ThirdParty/netif/gmlc/netif/NetIF.hpp
-    EXTRA_CMAKE_FLAGS=""
-fi
 
 mkdir build
 cd build
@@ -78,7 +72,7 @@ dependencies = [
 build_tarballs(
     ARGS,
     "libhelicsSharedLib",
-    v"2.2.2",
+    HELICS_VERSION,
     sources,
     script,
     platforms,
