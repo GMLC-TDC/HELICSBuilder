@@ -1,9 +1,13 @@
 using BinaryBuilder
 
-HELICS_VERSION = v"2.3.0"
+HELICS_VERSION = v"2.3.1"
 
 sources = [
-           "https://github.com/GMLC-TDC/HELICS/releases/download/v$HELICS_VERSION/Helics-v$HELICS_VERSION-source.tar.gz" => "33dc5ac0c3d3d434bd11de97595d5861c8557c52a0a61291031b29a232d3bb62",
+    (
+        "https://github.com/GMLC-TDC/HELICS/releases/download/v$HELICS_VERSION/Helics-v$HELICS_VERSION-source.tar.gz"
+        =>
+        "ffc4c8fa8fa593186a64288849a69c707ed91820448ff965947e32cdd54f9308"
+    ),
 ]
 
 script = raw"""
@@ -11,8 +15,10 @@ cd $WORKSPACE/srcdir
 
 mkdir build
 cd build
-
-cmake -DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_TOOLCHAIN_FILE=/opt/$target/$target.toolchain -DBoost_NO_BOOST_CMAKE=ON -DBOOST_INCLUDEDIR=$WORKSPACE/destdir/include -DBOOST_ROOT=$WORKSPACE/destdir -DCMAKE_BUILD_TYPE=Release -DHELICS_BUILD_TESTS=OFF ..
+BOOST_ARGS="-DBOOST_INCLUDEDIR=$WORKSPACE/destdir/include -DBOOST_ROOT=$WORKSPACE/destdir -DBoost_NO_BOOST_CMAKE=ON"
+CMAKE_ARGS="-DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_TOOLCHAIN_FILE=/opt/$target/$target.toolchain -DCMAKE_BUILD_TYPE=Release"
+HELICS_ARGS="-DHELICS_BUILD_TESTS=OFF"
+cmake ${CMAKE_ARGS} ${BOOST_ARGS} ${HELICS_ARGS} ..
 make -j${nproc}
 make install
 """
