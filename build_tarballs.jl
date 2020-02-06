@@ -1,12 +1,12 @@
 using BinaryBuilder
 
-HELICS_VERSION = v"2.3.1"
+HELICS_VERSION = v"2.4.0"
 
 sources = [
     (
         "https://github.com/GMLC-TDC/HELICS/releases/download/v$HELICS_VERSION/Helics-v$HELICS_VERSION-source.tar.gz"
         =>
-        "ffc4c8fa8fa593186a64288849a69c707ed91820448ff965947e32cdd54f9308"
+        "8de39728c7bb03be0bde0d506acc827bea732eddb7bb46892027b777b10dab27"
     ),
 ]
 
@@ -85,4 +85,3 @@ build_tarballs(
     products,
     dependencies,
 )
-
