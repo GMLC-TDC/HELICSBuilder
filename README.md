@@ -1,5 +1,6 @@
-# Build HELICS Binaries [![Build Status](https://travis-ci.com/GMLC-TDC/HELICSBuilder.svg?branch=master)](https://travis-ci.com/GMLC-TDC/HELICSBuilder)
-HelicsBuilder is a support repo for building HELICS binaries for an assortment of different platforms primarily for use in Julia.
+# Build HELICS Binaries [![CI](https://github.com/GMLC-TDC/HELICSBuilder/workflows/CI/badge.svg)](https://github.com/GMLC-TDC/HELICSBuilder/actions?query=workflow%3ACI)
+
+HELICSBuilder is a support repo for building HELICS binaries for an assortment of different platforms primarily for use in Julia.
 
 ## Release
 
