@@ -27,7 +27,21 @@ products = [
     LibraryProduct("libhelicsSharedLib", :libhelicsSharedLib),
 ]
 
-platforms = expand_cxxstring_abis(supported_platforms())
+platforms = [
+    Linux(:i686, libc=:glibc, compiler_abi=CompilerABI(cxxstring_abi=:cxx11)),
+    Linux(:x86_64, libc=:glibc, compiler_abi=CompilerABI(cxxstring_abi=:cxx11)),
+    Linux(:aarch64, libc=:glibc, compiler_abi=CompilerABI(cxxstring_abi=:cxx11)),
+    Linux(:armv7l, libc=:glibc, call_abi=:eabihf, compiler_abi=CompilerABI(cxxstring_abi=:cxx11)),
+    Linux(:powerpc64le, libc=:glibc, compiler_abi=CompilerABI(cxxstring_abi=:cxx11)),
+    Linux(:i686, libc=:musl, compiler_abi=CompilerABI(cxxstring_abi=:cxx11)),
+    Linux(:x86_64, libc=:musl, compiler_abi=CompilerABI(cxxstring_abi=:cxx11)),
+    Linux(:aarch64, libc=:musl, compiler_abi=CompilerABI(cxxstring_abi=:cxx11)),
+    Linux(:armv7l, libc=:musl, call_abi=:eabihf, compiler_abi=CompilerABI(cxxstring_abi=:cxx11)),
+    MacOS(:x86_64, compiler_abi=CompilerABI(cxxstring_abi=:cxx11)),
+    # FreeBSD(:x86_64, compiler_abi=CompilerABI(cxxstring_abi=:cxx11)),
+    Windows(:i686, compiler_abi=CompilerABI(cxxstring_abi=:cxx11)),
+    Windows(:x86_64, compiler_abi=CompilerABI(cxxstring_abi=:cxx11)),
+]
 
 dependencies = [
     "ZeroMQ_jll",
