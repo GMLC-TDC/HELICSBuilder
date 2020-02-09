@@ -30,8 +30,8 @@ products = [
 platforms = expand_cxxstring_abis(supported_platforms())
 
 dependencies = [
-    "https://github.com/benlorenz/boostBuilder/releases/download/v1.71.0-1/build_boost.v1.71.0.jl",
-    "https://github.com/kdheepak/ZMQBuilder/releases/download/v4.3.1/build_ZMQ.v4.3.1.jl",
+    "ZeroMQ_jll",
+    "boost_jll",
 ]
 
 # Build 'em!
