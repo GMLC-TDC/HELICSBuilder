@@ -23,20 +23,15 @@ make -j${nproc}
 make install
 """
 
-products(prefix) = [
-    LibraryProduct(prefix, "libhelicsSharedLib", :libhelicsSharedLib),
+products = [
+    LibraryProduct("libhelicsSharedLib", :libhelicsSharedLib),
 ]
 
-platforms = [
-    Linux(:x86_64, libc=:glibc),
-    Linux(:x86_64, libc=:musl),
-    MacOS(:x86_64),
-    Windows(:x86_64),
-] |> expand_cxxstring_abis
+platforms = expand_cxxstring_abis(supported_platforms())
 
 dependencies = [
-                "https://github.com/benlorenz/boostBuilder/releases/download/v1.71.0-1/build_boost.v1.71.0.jl",
-                "https://github.com/kdheepak/ZMQBuilder/releases/download/v4.3.1/build_ZMQ.v4.3.1.jl",
+    "https://github.com/benlorenz/boostBuilder/releases/download/v1.71.0-1/build_boost.v1.71.0.jl",
+    "https://github.com/kdheepak/ZMQBuilder/releases/download/v4.3.1/build_ZMQ.v4.3.1.jl",
 ]
 
 # Build 'em!
