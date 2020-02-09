@@ -1,12 +1,12 @@
 using BinaryBuilder
 
-HELICS_VERSION = v"2.3.1"
+HELICS_VERSION = v"2.4.0"
 
 sources = [
     (
         "https://github.com/GMLC-TDC/HELICS/releases/download/v$HELICS_VERSION/Helics-v$HELICS_VERSION-source.tar.gz"
         =>
-        "ffc4c8fa8fa593186a64288849a69c707ed91820448ff965947e32cdd54f9308"
+        "8de39728c7bb03be0bde0d506acc827bea732eddb7bb46892027b777b10dab27"
     ),
 ]
 
@@ -28,46 +28,11 @@ products(prefix) = [
 ]
 
 platforms = [
-    # Linux(:i686, libc=:glibc, compiler_abi=CompilerABI(:gcc4)),
-    Linux(:i686, libc=:glibc, compiler_abi=CompilerABI(:gcc7)),
-    Linux(:i686, libc=:glibc, compiler_abi=CompilerABI(:gcc8)),
-    # Linux(:x86_64, libc=:glibc, compiler_abi=CompilerABI(:gcc4)),
-    Linux(:x86_64, libc=:glibc, compiler_abi=CompilerABI(:gcc7)),
-    Linux(:x86_64, libc=:glibc, compiler_abi=CompilerABI(:gcc8)),
-    # Linux(:aarch64, libc=:glibc, compiler_abi=CompilerABI(:gcc4)),
-    Linux(:aarch64, libc=:glibc, compiler_abi=CompilerABI(:gcc7)),
-    Linux(:aarch64, libc=:glibc, compiler_abi=CompilerABI(:gcc8)),
-    # Linux(:armv7l, libc=:glibc, call_abi=:eabihf, compiler_abi=CompilerABI(:gcc4)),
-    Linux(:armv7l, libc=:glibc, call_abi=:eabihf, compiler_abi=CompilerABI(:gcc7)),
-    Linux(:armv7l, libc=:glibc, call_abi=:eabihf, compiler_abi=CompilerABI(:gcc8)),
-    # Linux(:powerpc64le, libc=:glibc, compiler_abi=CompilerABI(:gcc4)),
-    Linux(:powerpc64le, libc=:glibc, compiler_abi=CompilerABI(:gcc7)),
-    Linux(:powerpc64le, libc=:glibc, compiler_abi=CompilerABI(:gcc8)),
-    # Linux(:i686, libc=:musl, compiler_abi=CompilerABI(:gcc4)),
-    Linux(:i686, libc=:musl, compiler_abi=CompilerABI(:gcc7)),
-    Linux(:i686, libc=:musl, compiler_abi=CompilerABI(:gcc8)),
-    # Linux(:x86_64, libc=:musl, compiler_abi=CompilerABI(:gcc4)),
-    Linux(:x86_64, libc=:musl, compiler_abi=CompilerABI(:gcc7)),
-    Linux(:x86_64, libc=:musl, compiler_abi=CompilerABI(:gcc8)),
-    # Linux(:aarch64, libc=:musl, compiler_abi=CompilerABI(:gcc4)),
-    Linux(:aarch64, libc=:musl, compiler_abi=CompilerABI(:gcc7)),
-    Linux(:aarch64, libc=:musl, compiler_abi=CompilerABI(:gcc8)),
-    # Linux(:armv7l, libc=:musl, call_abi=:eabihf, compiler_abi=CompilerABI(:gcc4)),
-    Linux(:armv7l, libc=:musl, call_abi=:eabihf, compiler_abi=CompilerABI(:gcc7)),
-    Linux(:armv7l, libc=:musl, call_abi=:eabihf, compiler_abi=CompilerABI(:gcc8)),
-    # MacOS(:x86_64, compiler_abi=CompilerABI(:gcc4)),
-    MacOS(:x86_64, compiler_abi=CompilerABI(:gcc7)),
-    MacOS(:x86_64, compiler_abi=CompilerABI(:gcc8)),
-    # FreeBSD(:x86_64, compiler_abi=CompilerABI(:gcc4)),
-    # FreeBSD(:x86_64, compiler_abi=CompilerABI(:gcc7)),
-    # FreeBSD(:x86_64, compiler_abi=CompilerABI(:gcc8)),
-    # Windows(:i686, compiler_abi=CompilerABI(:gcc4)),
-    # Windows(:i686, compiler_abi=CompilerABI(:gcc7)),
-    # Windows(:i686, compiler_abi=CompilerABI(:gcc8)),
-    # Windows(:x86_64, compiler_abi=CompilerABI(:gcc4)),
-    Windows(:x86_64, compiler_abi=CompilerABI(:gcc7)),
-    Windows(:x86_64, compiler_abi=CompilerABI(:gcc8)),
-]
+    Linux(:x86_64, libc=:glibc),
+    Linux(:x86_64, libc=:musl),
+    MacOS(:x86_64),
+    Windows(:x86_64),
+] |> expand_cxxstring_abis
 
 dependencies = [
                 "https://github.com/benlorenz/boostBuilder/releases/download/v1.71.0-1/build_boost.v1.71.0.jl",
@@ -84,5 +49,5 @@ build_tarballs(
     platforms,
     products,
     dependencies,
+    ; preferred_gcc_version=v"7",
 )
-
