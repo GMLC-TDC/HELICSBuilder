@@ -1,0 +1,18 @@
+name: HELICS Version Update
+
+on: [repository_dispatch]
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    if: github.event.action == 'helics-version-update'
+    steps:
+    - uses: actions/checkout@v2
+    - name: Update HELICS version to ${{ github.event.client_payload.version }}
+      run: |
+        HELICS_VERSION="${{ github.event.client_payload.version }}"
+        HELICS_SHA=$(curl -L "https://github.com/GMLC-TDC/HELICS/releases/download/v${HELICS_VERSION}/Helics-v${HELICS_VERSION}-SHA-256.txt" | grep "Helics-v${HELICS_VERSION}-source.tar.gz" | cut -d " " -f1)
+        sed -i '' "s/HELICS_VERSION = v\".*\"/HELICS_VERSION = v\"${HELICS_VERSION}\"/" "build_tarballs.jl"
+        sed -i '' "s/HELICS_SHA = \".*\"/HELICS_SHA = \"${HELICS_SHA}\"/" "build_tarballs.jl"
+    - name: Commit updated version
+      run: git diff
