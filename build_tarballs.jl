@@ -4,7 +4,7 @@ HELICS_VERSION = v"2.4.0"
 HELICS_SHA = "8de39728c7bb03be0bde0d506acc827bea732eddb7bb46892027b777b10dab27"
 
 sources = [
-    FileSource(
+    ArchiveSource(
         "https://github.com/GMLC-TDC/HELICS/releases/download/v$HELICS_VERSION/Helics-v$HELICS_VERSION-source.tar.gz",
         "$HELICS_SHA",
     ),
