@@ -1,7 +1,7 @@
 using BinaryBuilder
 
-HELICS_VERSION = v"2.4.0"
-HELICS_SHA = "8de39728c7bb03be0bde0d506acc827bea732eddb7bb46892027b777b10dab27"
+HELICS_VERSION = v"2.4.1"
+HELICS_SHA = "ac077e9efe466881ea366721cb31fb37ea0e72a881a717323ba4f3cdda338be4"
 
 sources = [
     ArchiveSource(
